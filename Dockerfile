@@ -29,7 +29,7 @@ WORKDIR /app
 
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cu118 -r requirements.txt
 
 # Clone ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /app/ComfyUI
