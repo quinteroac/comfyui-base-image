@@ -71,6 +71,39 @@ Then you can access ComfyUI at `http://localhost:8188`
 
 This repository includes a GitHub Actions workflow for automatic Docker image builds to GitHub Container Registry (GHCR).
 
+### Self-Hosted Runner Setup
+
+The workflow is configured to use a **self-hosted runner** to avoid disk space limitations of GitHub-hosted runners.
+
+**To set up the local runner:**
+
+1. **Get a GitHub Personal Access Token:**
+   - Go to: https://github.com/settings/tokens/new
+   - Select `actions` scope
+   - Click "Generate token"
+
+2. **Run the setup script:**
+   ```powershell
+   .\setup-local-runner.ps1
+   ```
+   
+   The script will:
+   - Check for Docker installation
+   - Download the latest GitHub Actions runner
+   - Configure it for this repository
+
+3. **Start the runner:**
+   ```powershell
+   cd _runner
+   .\run.cmd
+   ```
+
+4. **Trigger a workflow:**
+   - Push to `main` branch, or
+   - Go to Actions → "Build Docker Image" → "Run workflow"
+
+The runner will execute builds on your local machine using your Docker installation.
+
 ### GitHub Container Registry (GHCR)
 
 The `docker-build.yml` workflow automatically:
